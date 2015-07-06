@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.learnandroidwear.customwearablelistview.WearableListItemLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center_vertical"
+<com.example.android.support.wearable.notifications.WearableListItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dip">
+    android:layout_height="80dp"
+    android:gravity="center_vertical">
 
-    <android.support.wearable.view.CircledImageView
+    <ImageView
         android:id="@+id/circle"
-        app:circle_color="#c1c1c1"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_width="52dip"
-        android:layout_height="52dip"
-        app:circle_border_color="#FFFFFFFF"
-        app:circle_border_width="2dp" />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_plusone_small_off_client" />
 
     <TextView
         android:id="@+id/name"
-        android:alpha="0.5"
-        android:gravity="center_vertical"
-        android:fontFamily="sans-serif-condensed-light"
-        android:textColor="@color/white"
-        android:textSize="16sp"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
-
-</com.learnandroidwear.customwearablelistview.WearableListItemLayout>
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center_vertical|left"
+        android:lineSpacingExtra="-4sp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+</com.example.android.support.wearable.notifications.WearableListItemLayout>
