@@ -4,4 +4,7 @@
     <string name="hello_square">Hello Square World!</string>
     <string name="theme">theme</string>
     <string name="more_on_phone">more on phone</string>
+    <string name="reply_label">which word?</string>
+    <string name="speech_prompt">speach prompt</string>
+    <string name="speech_not_supported">speech_not_supported</string>
 </resources>
