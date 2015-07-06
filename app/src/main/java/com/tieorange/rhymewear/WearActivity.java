@@ -2,12 +2,18 @@ package com.tieorange.rhymewear;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.wearable.view.WatchViewStub;
 import android.support.wearable.view.WearableListView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +26,7 @@ public class WearActivity extends Activity implements WearableListView.ClickList
     private List<Rhyme> items;
     private SettingsAdapter mAdapter;
     private ArrayList<Rhyme> mRhymesList = new ArrayList<>();
+    String url = "http://rhymebrain.com/talk?function=getRhymes&word=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,25 @@ public class WearActivity extends Activity implements WearableListView.ClickList
         });
 
 
+    }
+
+    public void getJson(final Context context, String word) {
+        Ion.with(context)
+                .load(url + word)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        // do stuff with the result or error
+
+                        Gson gson = new Gson();
+
+                        Rhymee response = gson.fromJson(result, Rhymee.class);
+
+
+
+                    }
+                });
     }
 
     private void promptSpeechInput() {
@@ -77,6 +103,7 @@ public class WearActivity extends Activity implements WearableListView.ClickList
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     //txtSpeechInput.setText(result.get(0));
                     String speachResult = result.get(0);
+                    getJson(getApplicationContext(), speachResult);
                     mRhymesList.add(new Rhyme(speachResult));
                     loadAdapter(mRhymesList);
                 }
